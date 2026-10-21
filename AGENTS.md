@@ -372,3 +372,17 @@ Present to the user:
 If yes: run `openlore decisions --consolidate --gate` and handle the result.
 If no: retry with `git commit --no-verify` to skip the gate.
 <!-- end-openlore-decisions-instructions -->
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in `unununnnn/OpenLore-wk` GitHub Issues, via the `gh` CLI. Read `docs/agents/issue-tracker.md` before working with tickets or Wayfinder maps.
+
+### Triage labels
+
+Use the five default triage labels. Read `docs/agents/triage-labels.md` before classifying issues.
+
+### Domain docs
+
+Single-context, with ADRs in `openspec/decisions/`. Read `docs/agents/domain.md` when resolving domain terms or checking architectural decisions.

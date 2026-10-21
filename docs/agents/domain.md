@@ -38,9 +38,9 @@ table + technical stack). When a skill asks for "the project's domain language" 
 `GLOSSARY.md` is absent, read the overview spec plus the spec for the domain you're
 touching, rather than inferring vocabulary from code identifiers.
 
-Structural questions ("who calls this", "what's the blast radius", "which spec covers
-this symbol") are answered by the OpenLore MCP tools described in the root `CLAUDE.md` —
-prefer those over grepping.
+For structural questions (callers, change impact, or spec ownership), use the OpenLore
+MCP tools: `orient`, `analyze_impact`, or `get_mapping`, respectively. Read named files
+and search literal text with native tools.
 
 ## Use the established vocabulary
 

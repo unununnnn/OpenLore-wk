@@ -83,17 +83,7 @@ For all other cases (reading a file, grepping, listing files) use native tools d
 [95 more lines]
 ## Agent skills
 
-### Issue tracker
-
-Issues live in `unununnnn/OpenLore-wk` GitHub Issues, via the `gh` CLI. Read `docs/agents/issue-tracker.md` before working with tickets or Wayfinder maps.
-
-### Triage labels
-
-Use the five default triage labels. Read `docs/agents/triage-labels.md` before classifying issues.
-
-### Domain docs
-
-Single-context, with ADRs in `openspec/decisions/`. Read `docs/agents/domain.md` when resolving domain terms or checking architectural decisions.
+Read `AGENTS.md` for this repository's Matt skills configuration and linked workflow documents.
 
 # Chat reply standard
 
