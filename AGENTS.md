@@ -1,10 +1,76 @@
 # openlore: LLM Agent Instructions
 
-> Use this document as a system prompt or paste directly into any LLM to enable openlore capabilities.
+## Repository authority and context
+
+This file is the canonical project instruction entry point for all coding agents.
+`CLAUDE.md` is a compatibility entry point that imports this file. Keep shared
+project rules here and task-specific reference material in the linked documents.
+
+When starting unfamiliar project work, read `openspec/specs/overview/spec.md`.
+Read `.openlore/analysis/CODEBASE.md` if it exists and is relevant; it is a generated,
+git-ignored digest that a fresh clone may lack. Inspect source before relying on
+cached details. Read `CONTRIBUTING.md` for development setup and required checks.
+
+## Code discovery and OpenLore
+
+Read a named file directly before expanding discovery. Use native tools for file
+reads and literal searches. Use `orient` for an unfamiliar module or a task spanning
+modules when structural context is needed; reuse that context while the relevant
+source is unchanged. Already-read files need no repeated orientation.
+
+OpenLore must be registered as an MCP server (`openlore mcp`). If it or its index is
+unavailable or stale, use source search and disclose material coverage limits.
+Refresh an index only when a structural query needs it; read-only audits must not
+initialize an index. A freshness (Epistemic Lease) note means re-orient if relying
+on cached cross-module structure. Treat it as information, not a failure.
+
+For choosing tools to trace callers, assess changes, verify claims, work with specs
+or memories, or coordinate work across repos, read
+[`docs/agents/openlore-tools.md`](docs/agents/openlore-tools.md).
+Tool results can be incomplete: cite their limits, distinguish test reachability
+from verified behavior, and inspect source when a claim remains unverifiable.
+
+The default MCP preset is `substrate`: navigation, spec-workflow composites, and
+read tools `recall`, `verify_claim`, and `blast_radius`. It excludes the write tools
+`remember` and `record_decision`. `navigation` is the lean navigation alternative;
+`memory`, `verify`, `federation`, `coordination`, `minimal` (`--minimal`), and `full`
+(`--all-tools`) expose other selections. Check the active tool list rather than
+assuming this checkout has been wired with any particular preset.
+
+For contributor setup, use the repository build and
+`node dist/cli/index.js install --preset full` as documented in `CONTRIBUTING.md`.
+When `record_decision` is unavailable, the architectural-decision workflow below
+can use `openlore decisions record --title "..." --rationale "..."` instead.
+
+## MCP and governance authoring
+
+Navigation and governance share one structural graph, anchored-fact store, and
+freshness lease. When adding an MCP tool:
+
+- Declare its output class (`conclusion` or `explicit-topology`) in
+  `src/core/services/mcp-handlers/tool-contract.ts`. Conclusion tools compute the
+  answer on the server instead of making the agent traverse a graph.
+- Declare one capability family in `TOOL_CAPABILITY_FAMILY`: `navigate`, `change`,
+  `remember`, `verify`, `coordinate`, or `federate`. Keep tools with distinct
+  conclusions distinct and cross-reference adjacent tools in the same family.
+- Run the companion `tool-contract.test.ts` checks along with affected checks.
+
+When adding a governance finding, register its stable code, source default class,
+and description in `FINDING_CODE_REGISTRY` in
+`src/core/services/mcp-handlers/enforcement-policy.ts`. Emit `GovernanceFinding`
+with `code`, `severity`, `source`, `subject`, and `message`. The source owns intrinsic
+severity; `enforcement.policy` owns the enforcement class. Most findings default
+to advisory; preserve any explicitly stricter source default.
+
+## Chat replies
+
+Use concise, clear replies in the user's language. For English replies, follow
+ASD-STE100 Simplified Technical English where practical; explain technical ideas
+at an accessible level and lead with the result.
 
 ## Agent Role
 
-You are a "code archaeologist" — your job is to reverse-engineer OpenSpec specifications from existing codebases. You document what code ACTUALLY does, not what you imagine it should do.
+When reverse-engineering OpenSpec specifications, act as a "code archaeologist": document what the code actually does, grounded in source evidence.
 
 ## Core Principles
 
@@ -13,7 +79,7 @@ You are a "code archaeologist" — your job is to reverse-engineer OpenSpec spec
 3. **OpenSpec-native**: Output follows OpenSpec conventions exactly
 4. **Never stop early**: Do not say "Task completed", "Done", or "Finished" without having re-read the original request and verified every part of it is addressed. If any file change, test, or wiring step remains, keep working.
 
-## Workflow
+## OpenSpec reverse-engineering workflow
 
 ### Step 1: Codebase Survey
 
@@ -181,7 +247,7 @@ openlore drift --uninstall-hook   # Remove the hook
 
 **Key Rule**: Drift detection is static analysis by default (no LLM required). It compares git changes against spec file mappings. Use `--use-llm` only when deeper semantic analysis is needed.
 
-## Output Checklist
+## OpenSpec output checklist
 
 Before completing, verify:
 
@@ -264,7 +330,7 @@ export MISTRAL_VIBE_CLI=/path/to/vibe
 
 ### Pre-computed artifacts
 
-Always run `openlore analyze` first. It produces structured JSON artifacts that Devstral can
+When generating specs through Vibe, run `openlore analyze` first if the analysis is missing or stale. It produces structured JSON artifacts that Devstral can
 read directly instead of exploring the codebase from scratch:
 
 | Artifact | What it contains |

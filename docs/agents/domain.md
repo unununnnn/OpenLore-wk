@@ -39,7 +39,7 @@ table + technical stack). When a skill asks for "the project's domain language" 
 touching, rather than inferring vocabulary from code identifiers.
 
 For structural questions (callers, change impact, or spec ownership), use the OpenLore
-MCP tools: `orient`, `analyze_impact`, or `get_mapping`, respectively. Read named files
+MCP tools described in [the tool selection reference](openlore-tools.md). Read named files
 and search literal text with native tools.
 
 ## Use the established vocabulary
