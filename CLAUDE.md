@@ -85,15 +85,15 @@ For all other cases (reading a file, grepping, listing files) use native tools d
 
 ### Issue tracker
 
-Issues live as GitHub issues on this repository, via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+Issues live in `unununnnn/OpenLore-wk` GitHub Issues, via the `gh` CLI. Read `docs/agents/issue-tracker.md` before working with tickets or Wayfinder maps.
 
 ### Triage labels
 
-Stock GitHub labels only — `needs-info`→`question`, `ready-for-human`→`help wanted`, `wontfix`→`wontfix`; `needs-triage` and `ready-for-agent` are stated in a comment. See `docs/agents/triage-labels.md`.
+Use the five default triage labels. Read `docs/agents/triage-labels.md` before classifying issues.
 
 ### Domain docs
 
-Single-context; no `CONTEXT.md` yet, and ADRs live in `openspec/decisions/`, not `docs/adr/`. See `docs/agents/domain.md`.
+Single-context, with ADRs in `openspec/decisions/`. Read `docs/agents/domain.md` when resolving domain terms or checking architectural decisions.
 
 # Chat reply standard
 

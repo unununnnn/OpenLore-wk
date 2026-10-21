@@ -8,21 +8,21 @@ package), with one ADR corpus.
 
 ## Before exploring, read these
 
-- **`CONTEXT.md`** at the repo root — **does not exist yet.** Proceed silently; don't
-  flag its absence and don't scaffold one upfront. `/grill-with-docs` creates it lazily,
+- **`GLOSSARY.md`** at the repo root — **does not exist yet.** Proceed silently; don't
+  flag its absence and don't scaffold one upfront. `/domain-modeling` creates it lazily,
   once terms actually get resolved.
 - **ADRs: `openspec/decisions/adr-*.md`** — *not* `docs/adr/`. This repo's ADRs are
   written by OpenLore's own `record_decision` tool and numbered `adr-NNNN-<slug>.md`.
   Read the ones touching the area you're about to work in.
 
-There is no `CONTEXT-MAP.md` and no per-context `src/<context>/docs/adr/` — a lookup
+There is no `GLOSSARY-MAP.md` and no per-context `src/<context>/docs/adr/` — a lookup
 there is expected to find nothing.
 
 ## File structure
 
 ```
 /
-├── CONTEXT.md                 ← not present yet
+├── GLOSSARY.md                 ← not present yet
 ├── openspec/
 │   ├── decisions/             ← THE ADR corpus (adr-0001-….md …)
 │   ├── specs/<domain>/spec.md ← the spec corpus, one directory per domain
@@ -35,7 +35,7 @@ there is expected to find nothing.
 Beyond ADRs, `openspec/specs/<domain>/spec.md` carries the requirements and the
 domain vocabulary in force. `openspec/specs/overview/spec.md` is the entry point (domain
 table + technical stack). When a skill asks for "the project's domain language" and
-`CONTEXT.md` is absent, read the overview spec plus the spec for the domain you're
+`GLOSSARY.md` is absent, read the overview spec plus the spec for the domain you're
 touching, rather than inferring vocabulary from code identifiers.
 
 Structural questions ("who calls this", "what's the blast radius", "which spec covers
